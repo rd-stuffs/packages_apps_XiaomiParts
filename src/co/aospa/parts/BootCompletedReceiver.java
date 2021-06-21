@@ -16,6 +16,7 @@ import androidx.preference.PreferenceManager;
 import co.aospa.parts.dirac.DiracUtils;
 import co.aospa.parts.display.KcalUtils;
 import co.aospa.parts.refreshrate.RefreshUtils;
+import co.aospa.parts.utils.HapticUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
@@ -39,5 +40,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         RefreshUtils.startService(context);
         if (KcalUtils.isKcalSupported())
             KcalUtils.writeCurrentSettings(sharedPrefs);
+        HapticUtils.restoreLevel(context);
     }
 }

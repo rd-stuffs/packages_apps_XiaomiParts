@@ -73,4 +73,16 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="vibration"
+        android:title="@string/vibration_title">
+
+        <SeekBarPreference
+            android:key="haptic_level_pref"
+            android:title="@string/haptic_level_title"
+            android:defaultValue="@integer/haptic_level_default"
+            android:max="@integer/haptic_level_max" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

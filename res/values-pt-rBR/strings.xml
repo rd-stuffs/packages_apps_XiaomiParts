@@ -12,6 +12,7 @@
     <string name="xiaomiparts">XiaomiParts</string>
     <string name="audio_title">Áudio</string>
     <string name="display_title">Tela</string>
+    <string name="vibration_title">Vibração</string>
 
     <!-- Dirac settings -->
     <string name="dirac_title">Dirac</string>
@@ -118,5 +119,9 @@
     <string name="refresh_summary">Defina uma taxa de atualização específica para cada aplicativo</string>
     <string name="refresh_default">Padrão</string>
     <string name="refresh_rate_title">Taxa de atualização</string>
+
+    <!-- Haptic level -->
+    <string name="haptic_level_title">Intensidade da vibração</string>
+    <string name="haptic_level_summary_incompatible">Recurso não suportado</string>
 
 </resources>

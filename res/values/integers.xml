@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2024 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+
+    <!-- Haptic level -->
+    <integer name="haptic_level_default">80</integer>
+    <integer name="haptic_level_max">100</integer>
+
+</resources>
