@@ -6,7 +6,6 @@ package co.aospa.parts.display;
 import android.os.Bundle;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
-import com.android.settingslib.widget.R;
 
 public class LcdFeaturesPreferenceActivity extends CollapsingToolbarBaseActivity {
 
@@ -14,7 +13,7 @@ public class LcdFeaturesPreferenceActivity extends CollapsingToolbarBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new LcdFeaturesPreferenceFragment())
+                .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, new LcdFeaturesPreferenceFragment())
                 .commit();
     }
 }

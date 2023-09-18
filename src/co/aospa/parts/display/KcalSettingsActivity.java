@@ -6,7 +6,6 @@ package co.aospa.parts.display;
 import android.os.Bundle;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
-import com.android.settingslib.widget.R;
 
 public class KcalSettingsActivity extends CollapsingToolbarBaseActivity  {
 
@@ -16,7 +15,7 @@ public class KcalSettingsActivity extends CollapsingToolbarBaseActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new KcalSettingsFragment(), TAG)
+                .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, new KcalSettingsFragment(), TAG)
                 .commit();
     }
 }
