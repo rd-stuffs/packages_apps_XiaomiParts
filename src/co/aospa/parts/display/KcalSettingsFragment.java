@@ -7,7 +7,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Switch;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -16,13 +17,12 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.SeekBarPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
-import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 import co.aospa.parts.R;
 import co.aospa.parts.display.KcalUtils;
 
 public class KcalSettingsFragment extends PreferenceFragment implements
-        OnPreferenceChangeListener, OnMainSwitchChangeListener {
+        OnPreferenceChangeListener, OnCheckedChangeListener {
 
     private static final String TAG = "KcalSettings";
 
@@ -94,7 +94,7 @@ public class KcalSettingsFragment extends PreferenceFragment implements
     }
 
     @Override
-    public void onSwitchChanged(Switch switchView, boolean isChecked) {
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         mKcalSwitchPreference.setChecked(isChecked);
         KcalUtils.writeConfigToNode(KcalUtils.KCAL_ENABLE_NODE, 0, isChecked ? 1 : 0);
     }
