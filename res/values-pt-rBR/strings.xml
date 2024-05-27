@@ -83,23 +83,57 @@
     <string name="clear_speaker_summary">Tocar um som de 30 segundos para limpar o alto-falante</string>
     <string name="clear_speaker_description">Execute esse recurso uma ou duas vezes se o alto-falante estiver bloqueado por sujeira ou água. Você deve ajustar o volume de mídia para o máximo.\n\nSe o alto-falante estiver muito bloqueado, execute este recurso 2 a 5 vezes enquanto agita seu dispositivo com o alto-falante voltado para baixo.\n\nAVISO: Certifique-se de que todos os fones de ouvido estejam desconectados.</string>
 
-    <!-- Kcal settings -->
+    <!-- KCAL -->
     <string name="kcal_settings_title">KCAL</string>
-    <string name="kcal_settings_summary">Ajuste as cores da sua tela usando KCAL</string>
-    <string name="kcal_enable">Usar KCAL</string>
-    <string name="kcal_not_supported">O kernel não tem suporte ao KCAL</string>
-    <string name="red_slider_title">Vermelho</string>
-    <string name="green_slider_title">Verde</string>
-    <string name="blue_slider_title">Azul</string>
-    <string name="hue_slider_title">Matiz</string>
-    <string name="brightness_slider_title">Brilho</string>
-    <string name="kcal_rgb_preference_category_title">RGB</string>
-    <string name="kcal_calibration_preference_category_title">Calibração de cores</string>
-    <string name="saturation_slider_title">Saturação</string>
-    <string name="reset_default_button_title">Redefinir para configuração padrão</string>
-    <string name="reset_default_button_summary">Redefinir todas as configurações do KCAL</string>
-    <string name="contrast_slider_title">Contraste</string>
-    <string name="reset_category_title">Redefinir</string>
+    <string name="kcal_settings_summary">Personalize as cores da tela</string>
+    <string name="cat_colormanagement">Configuração das cores</string>
+    <string name="cat_calibration">Calibração da tela</string>
+    <string name="kcal_enabled">Ligado</string>
+    <string name="kcal_disabled">Desligado</string>
+    <string name="set_on_boot">Definir na inicialização</string>
+    <string name="color_red">Vermelho</string>
+    <string name="color_green">Verde</string>
+    <string name="color_blue">Azul</string>
+    <string name="color_minimum">Mínimo</string>
+    <string name="saturation">Saturação</string>
+    <string name="value">Valor</string>
+    <string name="contrast">Contraste</string>
+    <string name="hue">Matiz</string>
+    <string name="grayscale">Escala de cinza</string>
+
+    <!-- Presets -->
+    <string name="presets_dialog_title">Selecionar predefinição</string>
+    <string name="preset_default">Padrão</string>
+    <string name="preset_version_1">Versão 1</string>
+    <string name="preset_version_2">Versão 2</string>
+    <string name="preset_version_3">Versão 3</string>
+    <string name="preset_triluminous">Triluminous</string>
+    <string name="preset_deep_black_white">Preto e Branco Profundos</string>
+    <string name="preset_deep_natural">Profundamente Natural</string>
+    <string name="preset_cool_amoled">Amoled Frio</string>
+    <string name="preset_extreme_amoled">Amoled Extremo</string>
+    <string name="preset_warm_amoled">Amoled Quente</string>
+    <string name="preset_hybrid_mamba">Hybrid Mamba</string>
+    <string name="preset_burn_in">Burn in Shit</string>
+    <string name="preset_retention">Correção de Retenção</string>
+    <string name="preset_gerard_extrem_cool">Gerard Extremamente Frio</string>
+    <string name="preset_yoyoz808">Yoyoz808</string>
+    <string name="preset_purian">Purian</string>
+    <string name="preset_deep_black_colorful">Preto Profundo Colorido</string>
+    <string name="preset_vomer_deep_rich">Vomer Deep Rich</string>
+    <string name="preset_franco">Franco</string>
+    <string name="preset_wrinklefree_cool">WrinkleFree Cool</string>
+    <string name="preset_harley_tech">Harley-Tech</string>
+    <string name="preset_perfection">Perfeição</string>
+    <string name="preset_banged_up">Banged up</string>
+    <string name="preset_sim_cooler">SimCooler</string>
+    <string name="preset_obsanity">Obsanity</string>
+    <string name="preset_obsanity_ips">Obsanity IPS</string>
+    <string name="preset_sir_banger">Sir Banger</string>
+
+    <!-- Menu -->
+    <string name="kcal_presets">@string/presets_dialog_title</string>
+    <string name="kcal_reset">Redefinir</string>
 
     <!-- LCD Features -->
     <string name="lcd_features_title">Recursos da tela</string>

@@ -83,23 +83,57 @@
     <string name="clear_speaker_summary">Play a 30-second audio to clear the speaker</string>
     <string name="clear_speaker_description">Run this feature once or twice if you find that your speaker is lightly blocked by dust. Set media volume to maximum.\n\nIf the speaker is blocked heavily, run this feature 2-5 times while shaking your device with the speaker facing downwards.\n\nWARNING: Ensure that any headphones are unplugged.</string>
 
-    <!-- Kcal settings -->
+    <!-- KCAL -->
     <string name="kcal_settings_title">KCAL</string>
-    <string name="kcal_settings_summary">Adjust the colors of your display using KCAL</string>
-    <string name="kcal_enable">Use KCAL</string>
-    <string name="kcal_not_supported">Display color settings is not supported by the kernel</string>
-    <string name="red_slider_title">Red</string>
-    <string name="green_slider_title">Green</string>
-    <string name="blue_slider_title">Blue</string>
-    <string name="hue_slider_title">Hue</string>
-    <string name="brightness_slider_title">Brightness</string>
-    <string name="kcal_rgb_preference_category_title">RGB</string>
-    <string name="kcal_calibration_preference_category_title">Color calibration</string>
-    <string name="saturation_slider_title">Saturation</string>
-    <string name="reset_default_button_title">Reset to default configuration</string>
-    <string name="reset_default_button_summary">Reset all the configurations of this screen</string>
-    <string name="contrast_slider_title">Contrast</string>
-    <string name="reset_category_title">Reset</string>
+    <string name="kcal_settings_summary">Customize screen colors</string>
+    <string name="cat_colormanagement">Color settings</string>
+    <string name="cat_calibration">Display calibration</string>
+    <string name="kcal_enabled">On</string>
+    <string name="kcal_disabled">Off</string>
+    <string name="set_on_boot">Set on boot</string>
+    <string name="color_red">Red</string>
+    <string name="color_green">Green</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_minimum">Minimum</string>
+    <string name="saturation">Saturation</string>
+    <string name="value">Value</string>
+    <string name="contrast">Contrast</string>
+    <string name="hue">Hue</string>
+    <string name="grayscale">Grayscale</string>
+
+    <!-- Presets -->
+    <string name="presets_dialog_title">Select preset</string>
+    <string name="preset_default">Default</string>
+    <string name="preset_version_1">Version 1</string>
+    <string name="preset_version_2">Version 2</string>
+    <string name="preset_version_3">Version 3</string>
+    <string name="preset_triluminous">Triluminous</string>
+    <string name="preset_deep_black_white">Deep Black and White</string>
+    <string name="preset_deep_natural">Deep Natural</string>
+    <string name="preset_cool_amoled">Cool Amoled</string>
+    <string name="preset_extreme_amoled">Extreme Amoled</string>
+    <string name="preset_warm_amoled">Warm Amoled</string>
+    <string name="preset_hybrid_mamba">Hybrid Mamba</string>
+    <string name="preset_burn_in">Burn in Shit</string>
+    <string name="preset_retention">Retention Fix</string>
+    <string name="preset_gerard_extrem_cool">Gerard Extreme Cool</string>
+    <string name="preset_yoyoz808">Yoyoz808</string>
+    <string name="preset_purian">Purian</string>
+    <string name="preset_deep_black_colorful">Deep Black Colorful</string>
+    <string name="preset_vomer_deep_rich">Vomer Deep Rich</string>
+    <string name="preset_franco">Franco</string>
+    <string name="preset_wrinklefree_cool">WrinkleFree Cool</string>
+    <string name="preset_harley_tech">Harley-Tech</string>
+    <string name="preset_perfection">Perfection</string>
+    <string name="preset_banged_up">Banged up</string>
+    <string name="preset_sim_cooler">SimCooler</string>
+    <string name="preset_obsanity">Obsanity</string>
+    <string name="preset_obsanity_ips">Obsanity IPS</string>
+    <string name="preset_sir_banger">Sir Banger</string>
+
+    <!-- Menu -->
+    <string name="kcal_presets">@string/presets_dialog_title</string>
+    <string name="kcal_reset">Reset</string>
 
     <!-- LCD Features -->
     <string name="lcd_features_title">LCD features</string>
