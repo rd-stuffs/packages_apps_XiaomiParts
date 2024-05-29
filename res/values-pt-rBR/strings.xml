@@ -102,7 +102,7 @@
     <string name="reset_category_title">Redefinir</string>
 
     <!-- LCD Features -->
-    <string name="lcd_features_title">Recursos do LCD</string>
+    <string name="lcd_features_title">Recursos da tela</string>
     <string name="lcd_features_summary">Modo de alto brilho, CABC</string>
     <string name="lcd_hbm_title">Modo de alto brilho (HBM)</string>
     <string name="lcd_hbm_medium">Médio</string>
