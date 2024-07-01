@@ -6,6 +6,12 @@ XIAOMIPARTS_PATH := packages/apps/XiaomiParts
 PRODUCT_PACKAGES += \
     XiaomiParts
 
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.audio.auto.scenario=true \
+    persist.vendor.audio.misound.disable=false \
+    persist.vendor.audio.misoundasc=true \
+    ro.vendor.audio.misound.bluetooth.enable=true
+
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.lcd.hbm_mode=0 \
     persist.lcd.cabc_mode=1

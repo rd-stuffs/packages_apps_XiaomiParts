@@ -13,6 +13,7 @@ import android.util.Log;
 
 import co.aospa.parts.utils.FileUtils;
 
+import co.aospa.parts.dirac.DiracUtils;
 import co.aospa.parts.refreshrate.RefreshUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver implements Controller {
@@ -31,6 +32,7 @@ public class BootCompletedReceiver extends BroadcastReceiver implements Controll
         if (DEBUG)
             Log.i(TAG, "Boot completed, starting services");
 
+        DiracUtils.onBootCompleted(context);
         RefreshUtils.startService(context);
 
         if (Settings.Secure.getInt(context.getContentResolver(), PREF_ENABLED, 0) == 1) {
