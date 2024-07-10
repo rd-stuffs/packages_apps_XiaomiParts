@@ -13,7 +13,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -24,14 +26,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 
-import java.lang.Math;
-import java.lang.StringBuffer;
-
-import co.aospa.parts.utils.FileUtils;;
+import co.aospa.parts.utils.FileUtils;
 
 public class FPSInfoService extends Service {
     private View mView;
-    private Thread mCurFPSThread;
+    private HandlerThread mHandlerThread;
+    private Handler mBackgroundHandler;
     private final String TAG = "FPSInfoService";
     private String mFps = null;
 
@@ -50,9 +50,10 @@ public class FPSInfoService extends Service {
 
         private boolean mDataAvail;
 
-        private Handler mCurFPSHandler = new Handler() {
+        private Handler mCurFPSHandler = new Handler(Looper.getMainLooper()) {
+            @Override
             public void handleMessage(Message msg) {
-                if(msg.obj == null || msg.what != 1) {
+                if (msg.obj == null || msg.what != 1) {
                     return;
                 }
                 String msgData = (String) msg.obj;
@@ -80,7 +81,7 @@ public class FPSInfoService extends Service {
 
             mAscent = mOnlinePaint.ascent();
             float descent = mOnlinePaint.descent();
-            mFH = (int)(descent - mAscent + .5f);
+            mFH = (int) (descent - mAscent + .5f);
 
             updateDisplay();
         }
@@ -114,17 +115,17 @@ public class FPSInfoService extends Service {
             }
 
             final int W = mNeededWidth;
-            final int RIGHT = getWidth()-1;
+            final int RIGHT = getWidth() - 1;
 
             int x = RIGHT - mPaddingLeft;
             int top = mPaddingTop + 2;
             int bottom = mPaddingTop + mFH - 2;
 
-            int y = mPaddingTop - (int)mAscent;
+            int y = mPaddingTop - (int) mAscent;
 
-            String s=getFPSInfoString();
-            canvas.drawText(s, RIGHT-mPaddingLeft-mMaxWidth,
-                    y-1, mOnlinePaint);
+            String s = getFPSInfoString();
+            canvas.drawText(s, RIGHT - mPaddingLeft - mMaxWidth,
+                    y - 1, mOnlinePaint);
             y += mFH;
         }
 
@@ -148,37 +149,10 @@ public class FPSInfoService extends Service {
             }
         }
 
-        public Handler getHandler(){
+        public Handler getHandler() {
             return mCurFPSHandler;
         }
     }
-
-    protected class CurFPSThread extends Thread {
-        private boolean mInterrupt = false;
-        private Handler mHandler;
-
-        public CurFPSThread(Handler handler){
-            mHandler=handler;
-        }
-
-        public void interrupt() {
-            mInterrupt = true;
-        }
-
-        @Override
-        public void run() {
-            try {
-                while (!mInterrupt) {
-                    sleep(1000);
-                    StringBuffer sb=new StringBuffer();
-                    String fpsVal = FileUtils.readOneLine(MEASURED_FPS);
-                    mHandler.sendMessage(mHandler.obtainMessage(1, fpsVal));
-                }
-            } catch (InterruptedException e) {
-                return;
-            }
-        }
-    };
 
     @Override
     public void onCreate() {
@@ -186,17 +160,21 @@ public class FPSInfoService extends Service {
 
         mView = new FPSView(this);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.TYPE_SECURE_SYSTEM_OVERLAY,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            PixelFormat.TRANSLUCENT);
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_SECURE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                PixelFormat.TRANSLUCENT);
         params.y = 50;
         params.gravity = Gravity.RIGHT | Gravity.TOP;
         params.setTitle("FPS Info");
 
-        startThread();
+        mHandlerThread = new HandlerThread("FPSInfoServiceHandlerThread");
+        mHandlerThread.start();
+        mBackgroundHandler = new Handler(mHandlerThread.getLooper());
+
+        startTask();
 
         mDreamManager = IDreamManager.Stub.asInterface(
                 ServiceManager.checkService(DreamService.DREAM_SERVICE));
@@ -204,17 +182,18 @@ public class FPSInfoService extends Service {
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(mScreenStateReceiver, screenStateFilter);
 
-        WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         wm.addView(mView, params);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        stopThread();
-        ((WindowManager)getSystemService(WINDOW_SERVICE)).removeView(mView);
+        stopTask();
+        ((WindowManager) getSystemService(WINDOW_SERVICE)).removeView(mView);
         mView = null;
         unregisterReceiver(mScreenStateReceiver);
+        mHandlerThread.quitSafely();
     }
 
     @Override
@@ -228,13 +207,13 @@ public class FPSInfoService extends Service {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
                 Log.d(TAG, "ACTION_SCREEN_ON " + isDozeMode());
                 if (!isDozeMode()) {
-                    startThread();
                     mView.setVisibility(View.VISIBLE);
+                    startTask();
                 }
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
                 Log.d(TAG, "ACTION_SCREEN_OFF");
                 mView.setVisibility(View.GONE);
-                stopThread();
+                stopTask();
             }
         }
     };
@@ -250,21 +229,24 @@ public class FPSInfoService extends Service {
         return false;
     }
 
-    private void startThread() {
-        Log.d(TAG, "started CurFPSThread");
-        mCurFPSThread = new CurFPSThread(mView.getHandler());
-        mCurFPSThread.start();
+    private void startTask() {
+        mBackgroundHandler.post(mCurFPSTask);
     }
 
-    private void stopThread() {
-        if (mCurFPSThread != null && mCurFPSThread.isAlive()) {
-            Log.d(TAG, "stopping CurFPSThread");
-            mCurFPSThread.interrupt();
+    private void stopTask() {
+        mBackgroundHandler.removeCallbacks(mCurFPSTask);
+    }
+
+    private Runnable mCurFPSTask = new Runnable() {
+        @Override
+        public void run() {
             try {
-                mCurFPSThread.join();
-            } catch (InterruptedException e) {
+                String fpsVal = FileUtils.readOneLine(MEASURED_FPS);
+                mView.getHandler().sendMessage(mView.getHandler().obtainMessage(1, fpsVal));
+                mBackgroundHandler.postDelayed(this, 1000);
+            } catch (Exception e) {
+                Log.e(TAG, "Error reading FPS value", e);
             }
         }
-        mCurFPSThread = null;
-    }
+    };
 }
