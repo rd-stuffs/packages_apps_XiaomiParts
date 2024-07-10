@@ -12,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
-import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -73,10 +72,7 @@ public class FPSInfoService extends Service {
 
             final int textSize = Math.round(16 * density);
 
-            Typeface typeface = Typeface.create("googlesans", Typeface.BOLD);
-
             mOnlinePaint = new Paint();
-            mOnlinePaint.setTypeface(typeface);
             mOnlinePaint.setAntiAlias(true);
             mOnlinePaint.setTextSize(textSize);
             mOnlinePaint.setColor(Color.YELLOW);
