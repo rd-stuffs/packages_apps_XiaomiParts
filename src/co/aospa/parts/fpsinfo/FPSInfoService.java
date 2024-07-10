@@ -58,7 +58,8 @@ public class FPSInfoService extends Service {
                 }
                 String msgData = (String) msg.obj;
                 msgData = msgData.trim().split("\\s+")[1];
-                mFps = msgData + " FPS";
+                int fpsValue = (int) Float.parseFloat(msgData);
+                mFps = String.valueOf(fpsValue);
                 mDataAvail = true;
                 updateDisplay();
             }
