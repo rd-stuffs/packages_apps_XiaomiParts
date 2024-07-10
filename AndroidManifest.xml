@@ -133,7 +133,7 @@
 
         <service
             android:name=".fpsinfo.FPSTileService"
-            android:label="@string/fps_info_title"
+            android:label="FPS"
             android:exported="true"
             android:icon="@drawable/ic_fps"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">

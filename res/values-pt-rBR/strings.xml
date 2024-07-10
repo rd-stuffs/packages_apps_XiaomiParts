@@ -119,7 +119,4 @@
     <string name="refresh_default">Padrão</string>
     <string name="refresh_rate_tile_title">Taxa de atualização</string>
 
-    <!-- FPS Counter -->
-    <string name="fps_info_title">Contador de FPS</string>
-
 </resources>
