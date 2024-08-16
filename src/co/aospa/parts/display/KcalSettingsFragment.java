@@ -19,7 +19,6 @@ import com.android.settingslib.widget.MainSwitchPreference;
 import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 import co.aospa.parts.R;
-import co.aospa.parts.utils.FileUtils;
 import co.aospa.parts.display.KcalUtils;
 
 public class KcalSettingsFragment extends PreferenceFragment implements

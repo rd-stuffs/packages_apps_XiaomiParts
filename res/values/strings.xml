@@ -85,8 +85,8 @@
 
     <!-- Kcal settings -->
     <string name="kcal_settings_title">KCAL</string>
-    <string name="kcal_settings_summary">Adjust the colors of your display using KCAL</string>
-    <string name="kcal_enable">Use KCAL</string>
+    <string name="kcal_settings_summary">Customize your display colors</string>
+    <string name="kcal_enable">Enable color calibration</string>
     <string name="kcal_not_supported">Display color settings is not supported by the kernel</string>
     <string name="red_slider_title">Red</string>
     <string name="green_slider_title">Green</string>
@@ -117,6 +117,6 @@
     <string name="refresh_title">Per-app refresh rate</string>
     <string name="refresh_summary">Set a specific refresh rate for each application</string>
     <string name="refresh_default">Default</string>
-    <string name="refresh_rate_tile_title">Refresh Rate</string>
+    <string name="refresh_rate_title">Refresh rate</string>
 
 </resources>

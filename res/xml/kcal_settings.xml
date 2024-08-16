@@ -85,7 +85,6 @@
         <Preference
             android:key="reset_default_button"
             android:title="@string/reset_default_button_title"
-            android:icon="@drawable/ic_reset"
             android:summary="@string/reset_default_button_summary" />
 
     </PreferenceCategory>

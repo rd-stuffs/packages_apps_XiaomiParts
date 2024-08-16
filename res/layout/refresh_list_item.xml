@@ -52,4 +52,5 @@
         android:padding="8dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_refresh_default" />
+
 </LinearLayout>

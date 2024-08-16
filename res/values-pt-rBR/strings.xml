@@ -85,8 +85,8 @@
 
     <!-- Kcal settings -->
     <string name="kcal_settings_title">KCAL</string>
-    <string name="kcal_settings_summary">Ajuste as cores da sua tela usando KCAL</string>
-    <string name="kcal_enable">Usar KCAL</string>
+    <string name="kcal_settings_summary">Personalize as cores da sua tela</string>
+    <string name="kcal_enable">Ativar calibração de cores</string>
     <string name="kcal_not_supported">O kernel não tem suporte ao KCAL</string>
     <string name="red_slider_title">Vermelho</string>
     <string name="green_slider_title">Verde</string>
@@ -96,13 +96,13 @@
     <string name="kcal_rgb_preference_category_title">RGB</string>
     <string name="kcal_calibration_preference_category_title">Calibração de cores</string>
     <string name="saturation_slider_title">Saturação</string>
-    <string name="reset_default_button_title">Redefinir para configuração padrão</string>
-    <string name="reset_default_button_summary">Redefinir todas as configurações do KCAL</string>
+    <string name="reset_default_button_title">Redefinir configurações</string>
+    <string name="reset_default_button_summary">Restaura os valores padrões da tela</string>
     <string name="contrast_slider_title">Contraste</string>
     <string name="reset_category_title">Redefinir</string>
 
     <!-- LCD Features -->
-    <string name="lcd_features_title">Recursos do LCD</string>
+    <string name="lcd_features_title">Recursos da tela</string>
     <string name="lcd_features_summary">Modo de alto brilho, CABC</string>
     <string name="lcd_hbm_title">Modo de alto brilho (HBM)</string>
     <string name="lcd_hbm_medium">Médio</string>
@@ -117,6 +117,6 @@
     <string name="refresh_title">Taxa de atualização por aplicativo</string>
     <string name="refresh_summary">Defina uma taxa de atualização específica para cada aplicativo</string>
     <string name="refresh_default">Padrão</string>
-    <string name="refresh_rate_tile_title">Taxa de atualização</string>
+    <string name="refresh_rate_title">Taxa de atualização</string>
 
 </resources>

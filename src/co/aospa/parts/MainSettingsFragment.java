@@ -3,21 +3,17 @@
 
 package co.aospa.parts;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
-import androidx.preference.SeekBarPreference;
 
 import co.aospa.parts.dirac.DiracActivity;
 import co.aospa.parts.speaker.ClearSpeakerActivity;
 import co.aospa.parts.display.KcalSettingsActivity;
 import co.aospa.parts.display.LcdFeaturesPreferenceActivity;
 import co.aospa.parts.refreshrate.RefreshActivity;
-
-import co.aospa.parts.utils.FileUtils;
 
 public class MainSettingsFragment extends PreferenceFragment {
 

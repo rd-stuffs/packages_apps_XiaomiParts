@@ -1,0 +1,3 @@
+persist.vendor.audio.misound.disable u:object_r:vendor_audio_prop:s0
+ro.vendor.audio.scenario.support u:object_r:vendor_audio_prop:s0
+ro.vendor.audio.soundfx.usb u:object_r:vendor_audio_prop:s0

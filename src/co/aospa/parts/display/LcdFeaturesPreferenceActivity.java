@@ -9,6 +9,7 @@ import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 import com.android.settingslib.widget.R;
 
 public class LcdFeaturesPreferenceActivity extends CollapsingToolbarBaseActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
