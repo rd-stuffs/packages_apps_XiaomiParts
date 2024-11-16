@@ -80,6 +80,19 @@ public final class KcalUtils {
         KcalUtils.writeConfigToNode(KcalUtils.KCAL_BRIGHTNESS_NODE, 0, sharedPrefs.getInt("brightness_slider", 255));
     }
 
+    public static void resetKcalSettings(SharedPreferences sharedPrefs) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.remove("kcal_enable");
+        editor.remove("red_slider");
+        editor.remove("green_slider");
+        editor.remove("blue_slider");
+        editor.remove("saturation_slider");
+        editor.remove("contrast_slider");
+        editor.remove("hue_slider");
+        editor.remove("brightness_slider");
+        editor.commit();
+    }
+
     public static boolean isKcalSupported() {
         return FileUtils.fileExists(KCAL_ENABLE_NODE);
     }

@@ -108,9 +108,7 @@ public class KcalSettingsFragment extends PreferenceFragment implements
         mResetButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                SharedPreferences.Editor editor = mSharedPrefs.edit();
-                editor.clear();
-                editor.commit();
+                KcalUtils.resetKcalSettings(mSharedPrefs);
                 getPreferenceScreen().removeAll();
                 addPreferencesFromResource(R.xml.kcal_settings);
                 configurePreferences();
