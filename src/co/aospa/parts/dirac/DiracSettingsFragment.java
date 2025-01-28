@@ -16,7 +16,6 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
 
