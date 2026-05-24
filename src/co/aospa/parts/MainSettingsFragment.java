@@ -11,7 +11,7 @@ import android.os.Vibrator;
 
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SeekBarPreference;
 
 import co.aospa.parts.dirac.DiracActivity;
@@ -23,7 +23,7 @@ import co.aospa.parts.refreshrate.RefreshActivity;
 import co.aospa.parts.utils.FileUtils;
 import co.aospa.parts.utils.HapticUtils;
 
-public class MainSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener {
+public class MainSettingsFragment extends PreferenceFragmentCompat implements OnPreferenceChangeListener {
 
     private static final String PREF_DIRAC_SETTINGS = "dirac_settings";
     private static final String PREF_CLEAR_SPEAKER_SETTINGS = "clear_speaker_settings";
@@ -41,7 +41,7 @@ public class MainSettingsFragment extends PreferenceFragment implements OnPrefer
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.xiaomiparts);
+        setPreferencesFromResource(R.xml.xiaomiparts, rootKey);
 
         mDiracSettingsPref = (Preference) findPreference(PREF_DIRAC_SETTINGS);
         mDiracSettingsPref.setOnPreferenceClickListener(preference -> {

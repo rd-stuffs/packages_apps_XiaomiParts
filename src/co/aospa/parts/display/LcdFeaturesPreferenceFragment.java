@@ -9,11 +9,11 @@ import android.os.SystemProperties;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceFragmentCompat;
 
 import co.aospa.parts.R;
 
-public class LcdFeaturesPreferenceFragment extends PreferenceFragment
+public class LcdFeaturesPreferenceFragment extends PreferenceFragmentCompat
         implements Preference.OnPreferenceChangeListener {
 
     public static final String HBM_PROP = "persist.lcd.hbm_mode";
@@ -27,7 +27,7 @@ public class LcdFeaturesPreferenceFragment extends PreferenceFragment
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.lcd_features_settings);
+        setPreferencesFromResource(R.xml.lcd_features_settings, rootKey);
         mHbmPref = (ListPreference) findPreference(KEY_HBM);
         mHbmPref.setOnPreferenceChangeListener(this);
         mCabcPref = (ListPreference) findPreference(KEY_CABC);

@@ -12,9 +12,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import androidx.preference.PreferenceFragment;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.Preference;
+import androidx.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.settingslib.widget.MainSwitchPreference;
 
@@ -22,7 +22,7 @@ import co.aospa.parts.R;
 
 import java.io.IOException;
 
-public class ClearSpeakerFragment extends PreferenceFragment implements OnCheckedChangeListener {
+public class ClearSpeakerFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "ClearSpeakerFragment";
     private static final String PREF_CLEAR_SPEAKER = "clear_speaker_pref";
@@ -34,20 +34,21 @@ public class ClearSpeakerFragment extends PreferenceFragment implements OnChecke
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.clear_speaker_settings);
+        setPreferencesFromResource(R.xml.clear_speaker_settings, rootKey);
 
         mClearSpeakerPref = findPreference(PREF_CLEAR_SPEAKER);
-        mClearSpeakerPref.addOnSwitchChangeListener(this);
+        mClearSpeakerPref.setOnPreferenceChangeListener(this);
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        mClearSpeakerPref.setChecked(isChecked);
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        boolean isChecked = (Boolean) newValue;
 
         if (isChecked && startPlaying()) {
             mHandler.removeCallbacksAndMessages(null);
             mHandler.postDelayed(this::stopPlaying, PLAY_DURATION_MS);
         }
+        return true;
     }
 
     @Override

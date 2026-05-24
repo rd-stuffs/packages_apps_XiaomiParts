@@ -7,12 +7,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SeekBarPreference;
 
@@ -21,8 +19,8 @@ import com.android.settingslib.widget.MainSwitchPreference;
 import co.aospa.parts.R;
 import co.aospa.parts.display.KcalUtils;
 
-public class KcalSettingsFragment extends PreferenceFragment implements
-        OnPreferenceChangeListener, OnCheckedChangeListener {
+public class KcalSettingsFragment extends PreferenceFragmentCompat implements
+        OnPreferenceChangeListener {
 
     private static final String TAG = "KcalSettings";
 
@@ -40,7 +38,7 @@ public class KcalSettingsFragment extends PreferenceFragment implements
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.kcal_settings);
+        setPreferencesFromResource(R.xml.kcal_settings, rootKey);
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         mKcalSwitchPreference = (MainSwitchPreference) findPreference("kcal_enable");
@@ -61,6 +59,10 @@ public class KcalSettingsFragment extends PreferenceFragment implements
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         switch (preference.getKey()){
+            case "kcal_enable":
+                boolean isChecked = (Boolean) newValue;
+                KcalUtils.writeConfigToNode(KcalUtils.KCAL_ENABLE_NODE, 0, isChecked ? 1 : 0);
+                return true;
             case "red_slider":
                 KcalUtils.writeConfigToNode(KcalUtils.KCAL_RGB_NODE, 1, (Integer) newValue);
                 mRedColorSlider.setSummary(String.valueOf(newValue));
@@ -93,16 +95,10 @@ public class KcalSettingsFragment extends PreferenceFragment implements
         return true;
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        mKcalSwitchPreference.setChecked(isChecked);
-        KcalUtils.writeConfigToNode(KcalUtils.KCAL_ENABLE_NODE, 0, isChecked ? 1 : 0);
-    }
-
     // Configure the switches, preferences and sliders
     private void configurePreferences() {
         mKcalSwitchPreference.setEnabled(true);
-        mKcalSwitchPreference.addOnSwitchChangeListener(this);
+        mKcalSwitchPreference.setOnPreferenceChangeListener(this);
 
         // Set the preference so it resets all the other preference's values, and applies the configuration on click
         mResetButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -110,7 +106,7 @@ public class KcalSettingsFragment extends PreferenceFragment implements
             public boolean onPreferenceClick(Preference preference) {
                 KcalUtils.resetKcalSettings(mSharedPrefs);
                 getPreferenceScreen().removeAll();
-                addPreferencesFromResource(R.xml.kcal_settings);
+                setPreferencesFromResource(R.xml.kcal_settings, null);
                 configurePreferences();
                 KcalUtils.writeCurrentSettings(mSharedPrefs);
                 configurePreferences();
